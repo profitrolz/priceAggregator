@@ -10,7 +10,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class MasterClassRow {
+public class MasterPriceRow {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
