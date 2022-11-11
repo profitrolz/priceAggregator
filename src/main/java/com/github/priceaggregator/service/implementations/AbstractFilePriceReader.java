@@ -15,7 +15,4 @@ public abstract class AbstractFilePriceReader implements PriceReader {
 
     @Override
     abstract public List<MasterPriceRowDto> readPrice();
-
-    @Override
-    abstract public void setReadProperties(ReadProperties readProperties);
 }

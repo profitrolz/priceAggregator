@@ -6,8 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface GoodsDao extends JpaRepository<Goods, Long> {
 
-    Goods getByMasterBrandAndPartNumber(MasterBrand masterBrand, String partNumber);
+    Optional<Goods> getByMasterBrandAndPartNumber(MasterBrand masterBrand, String partNumber);
 }

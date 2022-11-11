@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.net.URISyntaxException;
+import java.nio.file.Path;
 import java.util.List;
 
 class ExcelPriceReaderTest extends PriceAggregatorApplicationTests {
@@ -17,20 +19,20 @@ class ExcelPriceReaderTest extends PriceAggregatorApplicationTests {
     protected GoodsDao goodsDao;
 
     @Test
-    void readExcelFile_getOk() {
+    void readExcelFile_getOk() throws URISyntaxException {
         ReadProperties readProperties = ReadProperties.builder()
                 .fileName("pricetepark.xlsx")
                 .source("//")
                 .fileType(".xlsx")
-                .partNumberColumn(1)
-                .brandColumn(2)
-                .nameColumn(3)
-                .priceColumn(4)
-                .amountColumn(5)
+                .partNumberColumn(0)
+                .brandColumn(1)
+                .nameColumn(2)
+                .priceColumn(3)
+                .amountColumn(4)
+                .firstRow(1)
                 .build();
 
-        PriceReader priceReader = new ExcelPriceReader(goodsDao);
-        priceReader.setReadProperties(readProperties);
+        PriceReader priceReader = new ExcelPriceReader(Path.of(getClass().getClassLoader().getResource("excelPriceReader\\testSupplier\\pricetepark.xlsx").toURI()), readProperties);
         Assertions.assertIterableEquals(ExcelPriceReaderUtil.getExpectedMasterPriceRows(), priceReader.readPrice());
 
 
