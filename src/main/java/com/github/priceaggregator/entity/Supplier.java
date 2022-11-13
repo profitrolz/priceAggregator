@@ -5,10 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Map;
 
 @Builder
 @Entity
@@ -17,8 +15,14 @@ import javax.persistence.Id;
 @Data
 public class Supplier {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
-
     private String name;
+
+    @OneToMany
+    @JoinTable(name = "supplier_brands_mapping",
+    joinColumns = @JoinColumn(name = "supplier_name", referencedColumnName = "name"),
+    inverseJoinColumns = @JoinColumn(name = "masterBrand_id", referencedColumnName = "id"))
+    @MapKeyColumn(name = "supplier_option")
+    private Map<String, MasterBrand> brandMap;
+
+
 }

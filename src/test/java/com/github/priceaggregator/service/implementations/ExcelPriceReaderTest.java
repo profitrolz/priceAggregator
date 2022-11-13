@@ -1,22 +1,16 @@
 package com.github.priceaggregator.service.implementations;
 
 import com.github.priceaggregator.PriceAggregatorApplicationTests;
-import com.github.priceaggregator.dao.abstracts.GoodsDao;
-import com.github.priceaggregator.entity.MasterPriceRow;
 import com.github.priceaggregator.entity.ReadProperties;
 import com.github.priceaggregator.service.abstracts.PriceReader;
+import com.github.priceaggregator.service.priceReaders.ExcelPriceReader;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.net.URISyntaxException;
 import java.nio.file.Path;
-import java.util.List;
 
 class ExcelPriceReaderTest extends PriceAggregatorApplicationTests {
-
-    @Autowired
-    protected GoodsDao goodsDao;
 
     @Test
     void readExcelFile_getOk() throws URISyntaxException {
@@ -32,7 +26,7 @@ class ExcelPriceReaderTest extends PriceAggregatorApplicationTests {
                 .firstRow(1)
                 .build();
 
-        PriceReader priceReader = new ExcelPriceReader(Path.of(getClass().getClassLoader().getResource("excelPriceReader\\testSupplier\\pricetepark.xlsx").toURI()), readProperties);
+        PriceReader priceReader = new ExcelPriceReader(readProperties, Path.of(getClass().getClassLoader().getResource("excelPriceReader\\testSupplier\\pricetepark.xlsx").toURI()));
         Assertions.assertIterableEquals(ExcelPriceReaderUtil.getExpectedMasterPriceRows(), priceReader.readPrice());
 
 

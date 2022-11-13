@@ -19,7 +19,7 @@ public class MasterPriceRow {
     @ManyToOne
     protected MasterPrice masterPrice;
 
-    @ManyToOne
+    @Embedded
     protected Goods goods;
 
     protected double price;

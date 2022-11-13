@@ -12,5 +12,4 @@ public class MasterPriceRowDto {
     protected String brand;
     protected double price;
     protected int amount;
-
 }

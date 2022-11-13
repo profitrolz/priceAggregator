@@ -6,6 +6,8 @@ import org.apache.poi.ss.usermodel.Row;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
+import java.util.function.ObjDoubleConsumer;
+import java.util.function.ObjIntConsumer;
 
 public class ExcelRowExtractor<T> {
 
@@ -24,7 +26,6 @@ public class ExcelRowExtractor<T> {
         for (Setter<T> setter : setters) {
             setter.setValue(row, obj);
         }
-
         return obj;
     }
 
@@ -35,12 +36,12 @@ public class ExcelRowExtractor<T> {
             return this;
         }
 
-        public Builder setDouble(BiConsumer<T, Double> setter, int columnNumber) {
+        public Builder setDouble(ObjDoubleConsumer<T> setter, int columnNumber) {
             setters.add((row, obj) -> setter.accept(obj, getCellDouble(row, columnNumber)));
             return this;
         }
 
-        public Builder setInteger(BiConsumer<T, Integer> setter, int columnNumber) {
+        public Builder setInteger(ObjIntConsumer<T> setter, int columnNumber) {
             setters.add((row, obj) -> setter.accept(obj, getCellInteger(row, columnNumber)));
             return this;
         }
@@ -80,7 +81,7 @@ public class ExcelRowExtractor<T> {
                 case STRING:
                     return (int) Double.parseDouble(row.getCell(num).getStringCellValue());
                 case NUMERIC:
-                    return (int)row.getCell(num).getNumericCellValue();
+                    return (int) row.getCell(num).getNumericCellValue();
                 default:
                     throw new IllegalStateException();
             }
