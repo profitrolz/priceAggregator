@@ -4,9 +4,8 @@ import com.github.priceaggregator.dao.abstracts.MasterPriceDao;
 import com.github.priceaggregator.dto.MasterPriceRowDto;
 import com.github.priceaggregator.entity.*;
 import com.github.priceaggregator.service.abstracts.MasterPriceService;
-import com.github.priceaggregator.service.abstracts.PriceReader;
+import com.github.priceaggregator.service.abstracts.FileReader;
 import com.github.priceaggregator.service.abstracts.SupplierPriceService;
-import com.github.priceaggregator.service.priceReaders.PriceReaderFactory;
 import com.github.priceaggregator.mappers.MasterPriceRowMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -40,13 +39,13 @@ public class MasterPriceServiceImpl implements MasterPriceService {
 
     @Override
     @Transactional
-    public MasterPrice readSupplierPrice(SupplierPrice supplierPrice, PriceReader priceReader) {
+    public MasterPrice readSupplierPrice(SupplierPrice supplierPrice, FileReader fileReader) {
         MasterPrice masterPrice = masterPriceDao.getMasterPriceBySupplierPrice(supplierPrice).orElseGet(() -> MasterPrice.builder().supplierPrice(supplierPrice).build());
 
         ReadProperties properties = supplierPrice.getReadProperties();
         Path pricePath = Path.of(filePath, properties.getFileName());
 
-        List<MasterPriceRowDto> masterPriceRows = priceReader.readPrice();
+        List<MasterPriceRowDto> masterPriceRows = fileReader.readFile();
         Map<String, MasterBrand> brandMap = supplierPrice.getSupplier().getBrandMap();
 //        masterPrice.getRows().clear();
         masterPrice.setRows(masterPriceRows

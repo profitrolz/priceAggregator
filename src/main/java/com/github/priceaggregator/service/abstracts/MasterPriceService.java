@@ -6,6 +6,6 @@ import com.github.priceaggregator.entity.SupplierPrice;
 public interface MasterPriceService {
     void saveMasterPrice(MasterPrice masterPrice);
 
-    MasterPrice readSupplierPrice(SupplierPrice supplierPrice, PriceReader priceReader);
+    MasterPrice readSupplierPrice(SupplierPrice supplierPrice, FileReader fileReader);
 
 }

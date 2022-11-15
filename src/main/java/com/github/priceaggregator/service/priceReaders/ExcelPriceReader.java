@@ -1,7 +1,6 @@
 package com.github.priceaggregator.service.priceReaders;
 
 import com.github.priceaggregator.dto.MasterPriceRowDto;
-import com.github.priceaggregator.entity.MasterPriceRow;
 import com.github.priceaggregator.entity.ReadProperties;
 import com.github.priceaggregator.service.components.ExcelRowExtractor;
 import org.apache.poi.ss.usermodel.Row;
@@ -16,14 +15,14 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExcelPriceReader extends AbstractFilePriceReader<MasterPriceRowDto> {
+public class ExcelPriceReader extends AbstractPriceReader {
 
     public ExcelPriceReader(ReadProperties readProperties, Path filePath) {
         super(readProperties, filePath);
     }
 
     @Override
-    public List<MasterPriceRowDto> readPrice() {
+    public List<MasterPriceRowDto> readFile() {
         List<MasterPriceRowDto> list = new ArrayList<>();
         try (FileInputStream file = new FileInputStream(filePath.toFile())) {
             Workbook workbook = new XSSFWorkbook(file);

@@ -2,7 +2,7 @@ package com.github.priceaggregator.service.implementations;
 
 import com.github.priceaggregator.PriceAggregatorApplicationTests;
 import com.github.priceaggregator.entity.ReadProperties;
-import com.github.priceaggregator.service.abstracts.PriceReader;
+import com.github.priceaggregator.service.abstracts.FileReader;
 import com.github.priceaggregator.service.priceReaders.ExcelPriceReader;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -26,8 +26,8 @@ class ExcelPriceReaderTest extends PriceAggregatorApplicationTests {
                 .firstRow(1)
                 .build();
 
-        PriceReader priceReader = new ExcelPriceReader(readProperties, Path.of(getClass().getClassLoader().getResource("excelPriceReader\\testSupplier\\pricetepark.xlsx").toURI()));
-        Assertions.assertIterableEquals(ExcelPriceReaderUtil.getExpectedMasterPriceRows(), priceReader.readPrice());
+        FileReader fileReader = new ExcelPriceReader(readProperties, Path.of(getClass().getClassLoader().getResource("excelPriceReader\\testSupplier\\pricetepark.xlsx").toURI()));
+        Assertions.assertIterableEquals(ExcelPriceReaderUtil.getExpectedMasterPriceRows(), fileReader.readFile());
 
 
     }
