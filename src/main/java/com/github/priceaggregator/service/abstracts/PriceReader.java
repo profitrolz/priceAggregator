@@ -8,6 +8,4 @@ import java.util.List;
 
 public interface PriceReader {
     List<MasterPriceRowDto> readPrice();
-
-    void setReadProperties(ReadProperties readProperties);
 }

@@ -2,6 +2,7 @@ package com.github.priceaggregator.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Data
 public class SupplierPrice {
 
     @Id
@@ -17,6 +19,9 @@ public class SupplierPrice {
     protected long id;
 
     protected String logo;
+
+    @ManyToOne
+    protected Supplier supplier;
 
     @Embedded
     protected ReadProperties readProperties;

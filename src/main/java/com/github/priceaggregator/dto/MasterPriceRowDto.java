@@ -1,10 +1,11 @@
 package com.github.priceaggregator.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.context.annotation.Scope;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class MasterPriceRowDto {
     protected String partNumber;
     protected String name;

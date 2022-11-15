@@ -2,6 +2,7 @@ package com.github.priceaggregator.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Embeddable;
@@ -10,6 +11,7 @@ import javax.persistence.Embeddable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Embeddable
+@Getter
 public class ReadProperties {
 
     protected String source;
@@ -29,5 +31,7 @@ public class ReadProperties {
     protected int nameColumn;
 
     protected int multiplicityColumn;
+
+    protected int firstRow;
 
 }

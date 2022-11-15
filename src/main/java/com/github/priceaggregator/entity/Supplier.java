@@ -1,24 +1,30 @@
 package com.github.priceaggregator.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Map;
 
 @Builder
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
 public class Supplier {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
+    private Long id;
 
+    @Column(unique = true)
     private String name;
+
+    @ManyToMany
+    @JoinTable(name = "supplier_brands_mapping",
+    joinColumns = @JoinColumn(name = "supplier_id", referencedColumnName = "id"),
+    inverseJoinColumns = @JoinColumn(name = "masterBrand_id", referencedColumnName = "id"))
+    @MapKeyColumn(name = "supplier_option")
+    private Map<String, MasterBrand> brandMap;
+
+
 }
