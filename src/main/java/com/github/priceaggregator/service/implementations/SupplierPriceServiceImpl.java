@@ -7,6 +7,8 @@ import com.github.priceaggregator.exceptions.SupplierPriceNotFoundException;
 import com.github.priceaggregator.service.abstracts.SupplierPriceService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SupplierPriceServiceImpl implements SupplierPriceService {
 
@@ -24,5 +26,15 @@ public class SupplierPriceServiceImpl implements SupplierPriceService {
     @Override
     public SupplierPrice getSupplierPriceBySupplierAndLogo(Supplier supplier, String logo) {
         return supplierPriceDao.getSupplierPriceBySupplierAndLogo(supplier, logo).orElseThrow(SupplierPriceNotFoundException::new);
+    }
+
+    @Override
+    public SupplierPrice getSupplierPriceById(Long id) {
+        return supplierPriceDao.getReferenceById(id);
+    }
+
+    @Override
+    public List<SupplierPrice> getAll() {
+        return supplierPriceDao.findAll();
     }
 }

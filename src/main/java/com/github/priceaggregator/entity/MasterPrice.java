@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Builder
@@ -19,8 +20,8 @@ public class MasterPrice {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     protected long id;
 
-    @OneToMany(mappedBy = "masterPrice")
-    protected List<MasterPriceRow> rows;
+    @OneToMany(mappedBy = "masterPrice", cascade = CascadeType.ALL)
+    protected List<MasterPriceRow> rows = new ArrayList<>();
 
     @OneToOne
     protected SupplierPrice supplierPrice;
