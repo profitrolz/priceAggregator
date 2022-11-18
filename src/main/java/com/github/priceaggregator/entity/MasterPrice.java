@@ -26,6 +26,7 @@ public class MasterPrice {
     @OneToOne
     protected SupplierPrice supplierPrice;
 
-    @OneToMany
-    protected List<NotFoundBrands> notFoundBrands;
+    @ElementCollection
+    @CollectionTable(name = "not_found_brands")
+    protected List<String> notFoundBrands;
 }

@@ -1,6 +1,7 @@
 package com.github.priceaggregator.service.abstracts;
 
 
+import com.github.priceaggregator.dto.MasterPriceRowDto;
 import com.github.priceaggregator.entity.Supplier;
 import com.github.priceaggregator.entity.SupplierPrice;
 
@@ -15,5 +16,7 @@ public interface SupplierPriceService {
     SupplierPrice getSupplierPriceById(Long id);
 
     List<SupplierPrice> getAll();
+
+    void handleSupplierPrices();
 
 }

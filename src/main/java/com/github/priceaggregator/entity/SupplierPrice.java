@@ -20,6 +20,8 @@ public class SupplierPrice {
 
     protected String logo;
 
+    protected boolean needToHandle;
+
     @ManyToOne
     protected Supplier supplier;
 

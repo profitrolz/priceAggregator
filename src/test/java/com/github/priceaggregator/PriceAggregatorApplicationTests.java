@@ -13,8 +13,8 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 @SpringBootTest
-@Testcontainers
 @AutoConfigureMockMvc
+@Testcontainers
 public abstract class PriceAggregatorApplicationTests {
     @Autowired
     protected ObjectMapper objectMapper;
@@ -29,11 +29,11 @@ public abstract class PriceAggregatorApplicationTests {
             .withExposedPorts(5432)
             .withDatabaseName("price_agg_db");
 
-//    @DynamicPropertySource
-//    static void setProperties(DynamicPropertyRegistry registry) {
-//        registry.add("spring.datasource.url", container::getJdbcUrl);
-//        registry.add("spring.datasource.username", container::getUsername);
-//        registry.add("spring.datasource.password", container::getPassword);
-//    }
+    @DynamicPropertySource
+    static void setProperties(DynamicPropertyRegistry registry) {
+        registry.add("spring.datasource.url", container::getJdbcUrl);
+        registry.add("spring.datasource.username", container::getUsername);
+        registry.add("spring.datasource.password", container::getPassword);
+    }
 
 }
