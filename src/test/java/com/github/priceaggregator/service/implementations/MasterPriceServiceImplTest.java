@@ -1,6 +1,7 @@
 package com.github.priceaggregator.service.implementations;
 
 import com.github.priceaggregator.PriceAggregatorApplicationTests;
+import com.github.priceaggregator.dto.MasterPriceRowDto;
 import com.github.priceaggregator.service.abstracts.MasterPriceService;
 import com.github.priceaggregator.service.abstracts.FileReader;
 import com.github.priceaggregator.service.abstracts.SupplierPriceService;
@@ -19,7 +20,7 @@ class MasterPriceServiceImplTest extends PriceAggregatorApplicationTests {
     SupplierPriceService supplierPriceService;
 
     @Mock
-    private FileReader fileReader;
+    private FileReader<MasterPriceRowDto> fileReader;
 
 
     @Test

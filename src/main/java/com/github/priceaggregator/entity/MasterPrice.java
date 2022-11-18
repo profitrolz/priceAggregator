@@ -26,4 +26,6 @@ public class MasterPrice {
     @OneToOne
     protected SupplierPrice supplierPrice;
 
+    @OneToMany
+    protected List<NotFoundBrands> notFoundBrands;
 }

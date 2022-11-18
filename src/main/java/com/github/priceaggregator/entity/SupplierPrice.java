@@ -25,4 +25,7 @@ public class SupplierPrice {
 
     @Embedded
     protected ReadProperties readProperties;
+
+    @Embedded
+    protected PriceFileSource priceFileSource;
 }
