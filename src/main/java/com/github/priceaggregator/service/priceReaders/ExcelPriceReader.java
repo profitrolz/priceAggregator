@@ -7,6 +7,9 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
+import org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration;
+import org.springframework.context.ApplicationContext;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -45,6 +48,7 @@ public class ExcelPriceReader extends AbstractPriceReader {
         } catch (IOException e) {
             //TODO log
         }
+
 
         return list;
     }
