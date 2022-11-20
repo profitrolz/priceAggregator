@@ -12,7 +12,6 @@ import com.github.priceaggregator.service.priceReaders.PriceReaderFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.File;
 import java.util.List;
 
 @Service
@@ -55,10 +54,11 @@ public class SupplierPriceServiceImpl implements SupplierPriceService {
     public void handleSupplierPrices() {
         List<SupplierPrice> prices = supplierPriceDao.getSupplierPriceByNeedToHandleIsTrue();
         prices.forEach(this::readSupplierPrice);
+
     }
 
     private void readSupplierPrice(SupplierPrice supplierPrice) {
-        FileReader<MasterPriceRowDto> reader = priceReaderFactory.getPriceReader(supplierPrice.getPriceFileSource(), supplierPrice.getReadProperties());
+        FileReader<MasterPriceRowDto> reader = priceReaderFactory.getPriceReader(supplierPrice.getFileSource(), supplierPrice.getReadProperties());
         masterPriceService.readSupplierPrice(supplierPrice, reader);
     }
 }

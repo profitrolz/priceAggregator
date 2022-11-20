@@ -1,19 +1,24 @@
 package com.github.priceaggregator.service.priceReaders;
 
 import com.github.priceaggregator.dto.MasterPriceRowDto;
-import com.github.priceaggregator.entity.ReadProperties;
+import com.github.priceaggregator.service.abstracts.ConfigurablePriceFileReader;
 import com.github.priceaggregator.service.abstracts.FileReader;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.util.ResourceUtils;
 
 import java.nio.file.Path;
 
 
-public abstract class AbstractPriceReader implements FileReader<MasterPriceRowDto> {
+public abstract class AbstractPriceReader implements ConfigurablePriceFileReader<MasterPriceRowDto> {
 
-    protected final ReadProperties readProperties;
-    protected final Path filePath;
+    private static final String DEFAULT_LOCAL_ROOT = "src\\test\\resources";
 
-    protected AbstractPriceReader(ReadProperties readProperties, Path filePath) {
-        this.readProperties = readProperties;
-        this.filePath = filePath;
+    protected String filePath;
+
+    protected String localRootPath = DEFAULT_LOCAL_ROOT;
+
+    protected AbstractPriceReader() {
+
     }
+
 }

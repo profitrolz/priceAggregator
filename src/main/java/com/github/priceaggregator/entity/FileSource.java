@@ -14,7 +14,7 @@ import javax.persistence.Enumerated;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PriceFileSource {
+public class FileSource {
 
     @Enumerated(value = EnumType.STRING)
     protected SourceType source;

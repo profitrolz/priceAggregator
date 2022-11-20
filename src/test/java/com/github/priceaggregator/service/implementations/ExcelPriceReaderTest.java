@@ -1,19 +1,22 @@
 package com.github.priceaggregator.service.implementations;
 
 import com.github.priceaggregator.PriceAggregatorApplicationTests;
+import com.github.priceaggregator.dto.MasterPriceRowDto;
 import com.github.priceaggregator.entity.FileType;
-import com.github.priceaggregator.entity.PriceFileSource;
+import com.github.priceaggregator.entity.FileSource;
 import com.github.priceaggregator.entity.ReadProperties;
-import com.github.priceaggregator.entity.SourceType;
 import com.github.priceaggregator.service.abstracts.FileReader;
-import com.github.priceaggregator.service.priceReaders.ExcelPriceReader;
+import com.github.priceaggregator.service.priceReaders.PriceReaderFactory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.net.URISyntaxException;
-import java.nio.file.Path;
 
 class ExcelPriceReaderTest extends PriceAggregatorApplicationTests {
+
+    @Autowired
+    private PriceReaderFactory priceReaderFactory;
 
     @Test
     void readExcelFile_getOk() throws URISyntaxException {
@@ -33,7 +36,14 @@ class ExcelPriceReaderTest extends PriceAggregatorApplicationTests {
                 .firstRow(1)
                 .build();
 
-        FileReader fileReader = new ExcelPriceReader(readProperties, Path.of(getClass().getClassLoader().getResource("excelPriceReader\\testSupplier\\pricetepark.xlsx").toURI()));
+
+        FileSource fileSource = FileSource.builder()
+                .filePath("excelPriceReader\\testSupplier")
+                .fileName("pricetepark.xlsx")
+                .fileType(FileType.XLSX)
+                .build();
+
+        FileReader<MasterPriceRowDto> fileReader = priceReaderFactory.getPriceReader(fileSource, readProperties);
         Assertions.assertIterableEquals(ExcelPriceReaderUtil.getExpectedMasterPriceRows(), fileReader.readFile());
 
 

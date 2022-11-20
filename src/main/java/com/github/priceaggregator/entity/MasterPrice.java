@@ -20,6 +20,7 @@ public class MasterPrice {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     protected long id;
 
+    @Builder.Default
     @OneToMany(mappedBy = "masterPrice", cascade = CascadeType.ALL)
     protected List<MasterPriceRow> rows = new ArrayList<>();
 

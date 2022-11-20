@@ -9,7 +9,7 @@ import java.util.function.BiConsumer;
 import java.util.function.ObjDoubleConsumer;
 import java.util.function.ObjIntConsumer;
 
-public class ExcelRowExtractor<T> {
+public class ExcelRowExtractorDep<T> {
 
     @FunctionalInterface
     private interface Setter<T> {
@@ -18,8 +18,8 @@ public class ExcelRowExtractor<T> {
 
     private final List<Setter<T>> setters = new ArrayList<>();
 
-    public static <T> ExcelRowExtractor<T>.Builder newExtractorBuilder() {
-        return new ExcelRowExtractor<T>().new Builder();
+    public static <T> ExcelRowExtractorDep<T>.Builder newExtractorBuilder() {
+        return new ExcelRowExtractorDep<T>().new Builder();
     }
 
     public T extract(T obj, Row row) {
@@ -47,8 +47,8 @@ public class ExcelRowExtractor<T> {
         }
 
 
-        public ExcelRowExtractor<T> build() {
-            return ExcelRowExtractor.this;
+        public ExcelRowExtractorDep<T> build() {
+            return ExcelRowExtractorDep.this;
         }
 
         private String getCellString(Row row, int num) {
