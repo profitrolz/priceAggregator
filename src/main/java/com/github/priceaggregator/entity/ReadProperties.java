@@ -14,12 +14,6 @@ import javax.persistence.Embeddable;
 @Getter
 public class ReadProperties {
 
-    protected String source;
-
-    protected String fileType;
-
-    protected String fileName;
-
     protected int partNumberColumn;
 
     protected int brandColumn;

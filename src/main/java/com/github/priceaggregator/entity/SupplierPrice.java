@@ -20,9 +20,14 @@ public class SupplierPrice {
 
     protected String logo;
 
+    protected boolean needToHandle;
+
     @ManyToOne
     protected Supplier supplier;
 
     @Embedded
     protected ReadProperties readProperties;
+
+    @Embedded
+    protected FileSource fileSource;
 }

@@ -1,0 +1,6 @@
+<dataset>
+    <master_price_row id='1' amount='7' name='Фильтр топливный' part_number='T915' multiplicity='0' price='400' master_brand_id='1' master_price_id='1'/>
+    <master_price_row id='2' amount='5' name='Фильтр топливный' part_number='TP864' multiplicity='0' price='800' master_brand_id='1' master_price_id='1'/>
+    <master_price_row id='3' amount='1' name='Рукав' part_number='114R15' multiplicity='0' price='3234.62' master_brand_id='2' master_price_id='1'/>
+    <master_price_row id='4' amount='1' name='Фильтр' part_number='AS334' multiplicity='0' price='1906.08' master_brand_id='3' master_price_id='1'/>
+</dataset>

@@ -19,4 +19,16 @@ public final class ExcelPriceReaderUtil {
         );
     }
 
+    public static List<MasterPriceRowDto> getMasterPriceRows_saveMasterPrice() {
+
+        return List.of(new MasterPriceRowDto("T915","Фильтр топливный","ACDELCO",400d,7),
+                new MasterPriceRowDto("TP864","Фильтр топливный","ACDELCO",800d,5),
+                new MasterPriceRowDto("114R15","Рукав","AEROQUIP",3234.62,1),
+                new MasterPriceRowDto("AS334","Фильтр","AGAMA",1906.08,1),
+                new MasterPriceRowDto("AS335","Фильтр","AGM",1906.08,1)
+
+        );
+    }
+
+
 }

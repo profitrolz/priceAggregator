@@ -20,10 +20,14 @@ public class MasterPrice {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     protected long id;
 
+    @Builder.Default
     @OneToMany(mappedBy = "masterPrice", cascade = CascadeType.ALL)
     protected List<MasterPriceRow> rows = new ArrayList<>();
 
     @OneToOne
     protected SupplierPrice supplierPrice;
 
+    @ElementCollection
+    @CollectionTable(name = "not_found_brands")
+    protected List<String> notFoundBrands;
 }
