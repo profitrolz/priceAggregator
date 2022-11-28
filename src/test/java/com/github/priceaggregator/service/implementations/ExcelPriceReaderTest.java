@@ -38,7 +38,7 @@ class ExcelPriceReaderTest extends PriceAggregatorApplicationTests {
 
 
         FileSource fileSource = FileSource.builder()
-                .filePath("excelPriceReader\\testSupplier")
+                .filePath("excelPriceReader/testSupplier")
                 .fileName("pricetepark.xlsx")
                 .fileType(FileType.XLSX)
                 .build();

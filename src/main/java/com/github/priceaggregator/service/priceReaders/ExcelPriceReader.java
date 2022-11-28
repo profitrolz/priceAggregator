@@ -9,14 +9,13 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
@@ -24,12 +23,15 @@ import java.util.function.BiConsumer;
 import java.util.function.ObjDoubleConsumer;
 import java.util.function.ObjIntConsumer;
 
-@NoArgsConstructor
 @Component("excel")
 public class ExcelPriceReader extends AbstractPriceReader {
 
     private ExcelRowExtractor<MasterPriceRowDto> excelRowExtractor;
     private int firstRow;
+
+    public ExcelPriceReader(@Value("${file.upload-dir}") String localRootPath) {
+        super(localRootPath);
+    }
 
     @Override
     public List<MasterPriceRowDto> readFile() {
